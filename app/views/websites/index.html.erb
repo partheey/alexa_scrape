@@ -1,0 +1,21 @@
+<table class="table table-bordered table-stripped">
+  <thead>
+    <td>Address</td>
+    <td>Rank</td>
+    <td>Actions</td>
+  </thead>
+  <tbody>
+    <% @websites.each do |web| %>
+      <tr>
+        <td><%= web.address %></td>
+        <td><%= web.rank %></td>
+        <td><%= link_to 'View Graph', website_path(web)%> | <%= link_to 'Delete', website_path(web), method: :delete %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= form_for @website do |w| %>
+  <%= w.text_field :address, placeholder: 'Enter link of website' %>
+  <%= w.submit 'Add website' %>
+<% end %>
