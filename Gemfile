@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'nokogiri'
+gem 'sucker_punch'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'activeadmin', github: 'activeadmin'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

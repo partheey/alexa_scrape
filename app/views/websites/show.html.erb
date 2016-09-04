@@ -4,8 +4,12 @@
 <script>
   $(function () {
     var data_for_graph = [];
-    <% binding.pry %>
-    data = <%= @data %>;
+    // data = $.ajax({
+    //    url: window.location.href+'/rank_logs',
+    //    data: { format: 'json' },
+    //    type: 'GET'
+    // });
+    data = <%= raw @data.to_json %>
     for (i = 0; i < data.length; i++) {
         data_for_graph[i] = [Date.UTC(data[i]['date']['year'], data[i]['date']['month'], data[i]['date']['day']), data[i]['value']];
     }
@@ -17,7 +21,7 @@
             text: 'Changes in ranking as per alexa'
         },
         subtitle: {
-            text: <%= @website.address %>
+            text: "<%= @website.address %>"
         },
         xAxis: {
             type: 'datetime',
@@ -49,7 +53,7 @@
         },
 
         series: [{
-            name: <%= @website.address %>,
+            name: "<%= @website.address %>",
             // Define the data points. All series have a dummy year
             // of 1970/71 in order to be compared on the same x axis. Note
             // that in JavaScript, months start at 0 for January, 1 for February etc.
@@ -58,25 +62,3 @@
     });
 });
 </script>
-
-
-<!-- [
-    [Date.UTC(1970, 9, 21), 0],
-    [Date.UTC(1970, 10, 4), 0.28],
-    [Date.UTC(1970, 10, 9), 0.25],
-    [Date.UTC(1970, 10, 27), 0.2],
-    [Date.UTC(1970, 11, 2), 0.28],
-    [Date.UTC(1970, 11, 26), 0.28],
-    [Date.UTC(1970, 11, 29), 0.47],
-    [Date.UTC(1971, 0, 11), 0.79],
-    [Date.UTC(1971, 0, 26), 0.72],
-    [Date.UTC(1971, 1, 3), 1.02],
-    [Date.UTC(1971, 1, 11), 1.12],
-    [Date.UTC(1971, 1, 25), 1.2],
-    [Date.UTC(1971, 2, 11), 1.18],
-    [Date.UTC(1971, 3, 11), 1.19],
-    [Date.UTC(1971, 4, 1), 1.85],
-    [Date.UTC(1971, 4, 5), 2.22],
-    [Date.UTC(1971, 4, 19), 1.15],
-    [Date.UTC(1971, 5, 3), 0]
-] -->

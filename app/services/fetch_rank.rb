@@ -6,12 +6,13 @@ class FetchRank
 
   def get(url)
     request_url = @base_url+url
-    response = Nokogiri::XML(open(request_url))
-    find_rank(response)
+    alexa_response = open(request_url)
+    parsed_xml = Nokogiri::XML(alexa_response)
+    find_rank(parsed_xml)
   end
 
-  def find_rank(response)
-    rank = response.xpath('//SD//REACH').first['RANK']
+  def find_rank(parsed_xml)
+    rank = parsed_xml.xpath('//SD//REACH').first['RANK']
     rank.blank? ? false : rank.to_i
   end
 end
