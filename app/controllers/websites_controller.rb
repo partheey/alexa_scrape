@@ -7,7 +7,7 @@ class WebsitesController < ApplicationController
   end
 
   def show
-    @website = website_scope.find(params[:id]).includes(:rank_logs)
+    @website = website_scope.find(params[:id])
     rank_logs = @website.rank_logs.pluck(:new_value, :created_at)
     @data = build_data_for_chart(rank_logs)
   end
@@ -34,10 +34,10 @@ class WebsitesController < ApplicationController
   end
 
   def build_data_for_chart(param)
-    data = []
-    param.each do |p|
-      # TO DO
-    end
+    param.map{ |param| {'date' => build_date(param[1]), 'value' => param[0]} }
   end
 
+  def build_date(date)
+    { 'year' => date.year, 'month' => date.month, 'day' => date.day }
+  end
 end
