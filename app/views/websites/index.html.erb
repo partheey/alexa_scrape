@@ -15,7 +15,7 @@
   </tbody>
 </table>
 <br>
-<%= form_for @website do |w| %>
-  <%= w.text_field :address, placeholder: 'Enter link of website' %>
-  <%= w.submit 'Add website' %>
+<%= form_tag '/websites', method: :post do %>
+  <%= text_field_tag :address, nil, placeholder: 'Enter link of website' %>
+  <%= submit_tag 'Add website' %>
 <% end %>
