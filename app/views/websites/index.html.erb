@@ -15,12 +15,10 @@
   </tbody>
 </table>
 <br>
-<%= form_tag '/websites', method: :post do %>
+<%= form_tag '/websites', method: :post, id: 'form_url' do %>
   <div class="form-group has-feedback has-success">
     <label class="control-label" for="url_field">URL of the website</label>
     <%= text_field_tag :address, nil, {placeholder: 'Enter link of website', id: 'url_field', class: 'form-control', 'aria-describedby'=>'inputSuccess2Status'} %>
-    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-    <span id="inputSuccess2Status" class="sr-only">(success)</span>
   </div>
   <%= submit_tag 'Add website' %>
 <% end %>
