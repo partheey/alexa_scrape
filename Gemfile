@@ -29,8 +29,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'nokogiri'
 gem 'sucker_punch'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'bootstrap3-rails'
 gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -13,7 +13,7 @@ class Website < ApplicationRecord
     # if self.rank_changed?
       o_val, n_val = self.rank_change
       o_val = 0 if o_val.nil?
-      o_val, n_val = self.rank if n_val.nil?
+      (o_val = self.rank && n_val = self.rank) if n_val.nil?
       self.rank_logs.create(old_value: o_val, new_value: n_val)
     # end
   end
