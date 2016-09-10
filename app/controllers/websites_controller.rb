@@ -11,13 +11,13 @@ class WebsitesController < ApplicationController
   end
 
   def create
-    rank =  FetchRank.new.get(params[:address])
+    rank, error =  FetchRank.new.get(params[:address])
     if rank
-      @website = current_user.websites.create(address: params[:address], rank: rank.to_i)
+      @website = current_user.websites.create(address: params[:address], rank: rank)
       redirect_to websites_path
     else
-      flash[:danger] = 'Website not found in alexa !'
-      render 'index'
+      redirect_to websites_path
+      flash[:danger] = error
     end
   end
 

@@ -25,6 +25,6 @@ class DailyRankFetchJob
 
   def build_hash_for_update(website)
     new_rank = FetchRank.new.get(website.address)
-    { rank: new_rank } if new_rank
+    new_rank ? { rank: new_rank } : { failure_count: website[:failure_count] + 1 }
   end
 end

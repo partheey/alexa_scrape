@@ -1,0 +1,8 @@
+%h2 Add a website
+%br
+= form_tag '/websites', method: :post, id: 'form_url', class: 'form-horizonttal' do
+  .form-group
+    %label.control-label{:for => "url_field"} URL of the website
+    = text_field_tag :address, nil, {placeholder: 'http://example.com', id: 'url_field', class: 'form-control', 'aria-describedby'=>'inputSuccess2Status'}
+    %span#err-block.help-block.hide The URL is invalid.
+  = submit_tag 'Add website', class: 'btn btn-primary'

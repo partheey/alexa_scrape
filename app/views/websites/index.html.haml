@@ -1,0 +1,17 @@
+%h2 My Websites
+%br
+%table.table.table-bordered.table-stripped
+  %thead
+    %td Address
+    %td Rank
+    %td Actions
+  %tbody
+    - @websites.each do |web|
+      %tr
+        %td= web.address
+        %td= web.rank
+        %td
+          = link_to 'View Graph', website_path(web)
+          | #{link_to 'Delete', website_path(web), method: :delete}
+%br/
+= render 'form'

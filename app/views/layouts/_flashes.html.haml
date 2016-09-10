@@ -1,0 +1,8 @@
+- flash.to_a.reverse.to_h.each do |key, value|
+  - unless value.empty?
+    - key = 'info' if ['notice','alert'].include?(key)
+    .alert.alert-block{class: "alert-#{key}"}
+      = raw(value)
+      %button.close{"data-dismiss" => "alert"}
+        %i.fa.fa-times
+- flash.clear
