@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904193619) do
+ActiveRecord::Schema.define(version: 20160910210136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,11 +73,12 @@ ActiveRecord::Schema.define(version: 20160904193619) do
   end
 
   create_table "websites", force: :cascade do |t|
-    t.text     "address",    null: false
-    t.integer  "rank",       null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "address",                   null: false
+    t.integer  "rank",                      null: false
+    t.integer  "user_id",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "failure_count", default: 0
     t.index ["address", "user_id"], name: "index_websites_on_address_and_user_id", unique: true, using: :btree
   end
 
