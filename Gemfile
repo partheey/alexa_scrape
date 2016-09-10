@@ -31,6 +31,7 @@ gem 'devise'
 gem 'nokogiri'
 gem 'sucker_punch'
 gem 'bootstrap3-rails'
+gem 'font-awesome-rails'
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
