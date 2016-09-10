@@ -3,18 +3,22 @@ var ready = function () {
     var url = $(this).val()
     if (IsvalidURL(url)) {
       $(this).parent().attr("class",'form-group has-feedback has-success');
+      $('#err-block').removeClass('show');
+      $('#err-block').addClass('hide');
     } else {
       $(this).parent().attr("class",'form-group has-feedback has-error');
+      $('#err-block').removeClass('hide');
+      $('#err-block').addClass('show');
     }
   });
 
-  $("#form_url").submit(function(e){
-    url = $('#url_field').text();
+  $("#form_url").on('submit', function(e){
+    url = $('#url_field').val();
+    console.log(IsvalidURL(url));
     if (IsvalidURL(url)) {
-      console.log($(this).val());
-      e.submit();
-    } else {
-      e.preventDefault();
+      $('#form_url').submit();
+    } else{
+      return false;
     }
   });
 
