@@ -1,37 +1,36 @@
 class WebsitesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_website, only: [:show, :destroy, :get_rank_logs_with_date]
-  before_action :common_get, only: [:show,:get_rank_logs_with_date]
+  before_action :set_website, only: [:show, :destroy]
+  before_action :website_scope
   def index
     @website = Website.new
-    @websites = website_scope
   end
 
   def show
+    data_for_graph
   end
 
   def create
     rank, error =  FetchRank.new.get(params[:address])
     if rank
       @website = current_user.websites.create(address: params[:address], rank: rank)
-      redirect_to websites_path
     else
-      redirect_to websites_path
       flash[:danger] = error
     end
+    render :index
   end
 
   def destroy
     @website.destroy
-    redirect_to websites_path
+    render :index
   end
 
-  def get_rank_logs_with_date
-    render json: { rank_logs: @data }, status: :ok
-  end
+  # def get_rank_logs_with_date
+  #   render json: { rank_logs: @data }, status: :ok
+  # end
 
   private
-  def common_get
+  def data_for_graph
     rank_logs = @website.rank_logs.pluck(:new_value, :created_at)
     @data = build_data_for_chart(rank_logs)
   end
@@ -40,7 +39,7 @@ class WebsitesController < ApplicationController
   end
 
   def website_scope
-    current_user.websites
+    @websites = current_user.websites
   end
 
   def build_data_for_chart(param)

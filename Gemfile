@@ -41,9 +41,6 @@ gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
-  gem 'rails-controller-testing'
-  gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'
 end
@@ -60,6 +57,9 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'rails-controller-testing'
+  gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'database_cleaner'
   gem 'simplecov', :require => false
